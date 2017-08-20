@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		 <!-- 打印查询语句 
+        <setting name="logImpl" value="STDOUT_LOGGING" />-->
+		
+		<!-- 开启驼峰匹配 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- 二级缓存开关 -->
+		<setting name="cacheEnabled" value="false" />
+
+		<!-- 开启延迟加载 -->
+		<setting name="lazyLoadingEnabled" value="false" />
+		<!-- true启用时，当延迟加载开启时访问对象中一个懒对象属性时，将完全加载这个对象的所有懒对象属性。 false，当延迟加载时，按需加载对象属性 -->
+		<setting name="aggressiveLazyLoading" value="false" />
+	</settings>
+	    <!-- 配置分页插件 -->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->        
+            <property name="dialect" value="MariaDB"/>
+        </plugin>
+         <plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor">
+			<!--使用Oracle序列 -->
+			<property name="ORDER" value="BEFORE"/>
+			<!-- 配置通用Maper的实现 -->
+			<property name="mappers" value="com.github.abel533.mapper.Mapper" />
+		</plugin>
+    </plugins>
+</configuration>
